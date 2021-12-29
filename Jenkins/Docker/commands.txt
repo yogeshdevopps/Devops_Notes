@@ -1,0 +1,10 @@
+docker-compose build --no-cache
+docker system prune
+docker ps
+docker-compose up -d ---> create or recrete service
+docker logs container_name
+docker-compose stop --> stop services, services no longer live
+docker-compose start --> start services
+docker-compose restart container_name ---> restart container as service
+docker-compose down --> completely delete entire service, deleted everything related service(network, volume)
+docker cp filename container_naem:/inside/path

@@ -1,0 +1,4 @@
+- hosts: test1
+  tasks:
+
+      - shell: echo Hi, This is your first playbook > /tmp/ansible

@@ -1,0 +1,6 @@
+[all:vars]---> all variable
+
+ansible_connections---> how ansible going to connect to other hosts
+
+[group]---> is name in that we can define bunch of service taht have tings in common
+

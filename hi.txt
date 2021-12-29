@@ -1,0 +1,98 @@
++Hi, 
+I am Yogesh Kolekar
+I Have to total 5+ year of experience in Linux , devops
+I started my carrier with one97 communication which is telecom-based organization and its mother organization of Paytm.
+there I was started with L1, Then I got promoted to L2 and after that I promoted to L3 for 8 to 9 month  and Leading the team of operation.
+I was leading team, which includes multiple operational tasks from L1 to L3.
+As Linux System Admin .
+os installation
+Installation of OS in VMware.
+file system creation
+User administration like user creation, user permissions, profiles, setting environment to
+user, giving special permissions (sudo and ACLs) to them and user troubleshooting issues like
+user unable to login password requests.
+Network related issues providing networking, setting NIC card parameters, troubleshooting issues.
+Troubleshoot Linux servers
+Some internal backups.
+O/S patching and package administration whenever needed using rpm and yum
+I also supports process related issues like memory utilization full (90%), CPU utilization
+full (90%) and file system full, ...etc.,
+I also support for system troubleshooting issues like system not responding, node
+down, starting and stopping services and deamons
+Hardware related issues like adding disks, NIC cards, processor replacement,
+memory replacement, increase memory and power supply replacement, ....etc.,
+We get requests from production, database, Q A people like creating volumes, file system
+creation, increase and (or) decrease the volume sizes, provide permissions, redundancy, put the
+volume into cluster to provide high availability,
+(2) sometimes destroy or remove the volumes, backup and restore whenever necessary,
+(3) We also get some troubleshooting issues like volume not started, volume not accessible,
+file system crashed, mount point deleted, disks failed, volume manager daemons are
+not working, configuration files missed, crashed, disk groups not deporting and not
+importing, volume started but users are unable to access file systems on those volumes. Etc
+Performed regular maintenance on the servers to ensure issues were resolved quickly and never interfered with regular operations.
+Identified errors in network operations and made recommendations for how issues could be resolved efficiently.
+
+I have used chef for configuration management in one97 comm
+In chef,
+I can configure chef setup
+I can write cookbook 
+Deploy web server 
+Using docker
+I can launch containers
+Managing docker images.
+
+I also worked on Nagios for monitoring purpose one97 comm
+
+In AWS 
+•	`Launching the AWS instances.
+•	Creating security groups.
+•	Connect EC2 instance using ssh/putty/puttygen.
+•	Associate elastic IP address to EC2 instance
+•	Creating and managing the S3 buckets
+•	Creating and managing VPC
+•	Creating and managing Load Balancer 
+•	Taking and managing AMI’s.
+•	Building infrastructure on AWS environment
+Project
+•	My last project was automating end to end deployment using Continuous integration and delivery practices.
+•	For this purpose, we used GIT HUB, Jenkins, docker and infrastructure side we used AWS x`services.
+•	Once developer commit the coding in GIT HUB, continuous build system build pull the code after that build and run test , Then it will create a docker container and upload to the aws ecr and deployed.
+
+
+
+
+Now  I am working in media.net as system associate operation2 it is part of system admin team
+ Here me and my team managing almost 800 + servers which incluses some physiacl , some openstack , some VM and and aws
+So we have littile bit access of AAWS console here
+ 
+
+we are using redmine ticketing tool for resolving and managing tickets.
+we received any request throught the ticket then we will assign the tickets itself as per availabilty.
+
+
+I am installing and configuring operating system and applications on windows as well as Linux machines.
+This process is like .. 
+First we will raise the ticket for procurement team for purchasaing required hardware
+Once hardware is received then will raise the ticket to our DC whetget tocheck hardware is received or nor and tell them to bomb verification
+after that raising request to rack the server with specific row and cab details
+Once server is racked and all links are connected to the box , then we can take access from console port and start to install os on this.
+ 
+we are managing users on both platform Linux and windows using AD service and puppet. I am using git to configure and deploy he script on servers.
+
+Working on some data backup activity
+
+I am performing on some of DC operations like trouble shouting hardware issues, install and configure hardware, disk repacement etc.Configuring hardware raid
+
+
+Also worked on server decomissioning activity
+worked on device42 and rackmonkey for server inventory
+
+
+Then conducting training sessions for new joinees and doing mentorship for them
+
+Doing OS paching activity for both windows and linux
+For windows we are using WSUS serevr for patching
+
+I am the primary part of incident management process here
+we are monitoring system , applications performance , disk usageand lots of things.
+we are configured icinga at backend and thruk for front end for this purpose.

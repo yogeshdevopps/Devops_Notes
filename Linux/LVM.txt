@@ -1,0 +1,109 @@
+--------------------Create LVM----------------------------
+
+1. first create Physical volume
+--> pvcreate physical_disk name
+--> vgcreate vg_name pv_name
+--> lvcraete -L size( in mb) -n lv_name vg_name
+    lvcreate -l size(in in PE) -n lv_name vg_name
+--> make file system
+     mkfs.exfs /dev/vg_name/lv_name
+--> create mount point
+    mount /dev/vg_name/lv_name /mnt point
+
+df -hT
+
+ses the detais
+
+pvs--vgs--lvs  ---> dispaly physiacl volume with less details
+pvdispaly--vgdisplay--lvdisplay --> dispaly physiacl volume with more details
+pvdispaly--vgdisplay--lvdisplay name ---> dispaly the details of specific volume
+pvscan--lvscan--vgscan --> scan all pv_name
+pvscan--lvscan--vgscan pv/lv/vg_name ---> scan the details of specific volume
+
+# lvdisplay -m ( to check on which physical volume the data is currently writing from all 
+logical volumes)
+# lvdisplay -m <lvname>
+ (to check on which physical volume the data is writing from the Specified logical volume
+
+
+lvmextend
+
+--> lvextend -L size(in mb) /dev/vg_name/lv_name
+--> xfs_growfs /dev/vg_name/lv_name
+--> lvdisplay
+
+# lvextend -l +100% FREE <logical volume>
+ (to extend the logical volume by adding the volume group's total available space)
+ # lvextend -l 50% <vgname><lvname>
+ (to extend the logical volume by adding the 50% free space of the volume group
+
+lvreduce
+
+--> first unmount the file system
+--> e2fsck /dev/vg_name\lv_name ---> check consistency
+--> lvreduce -L size(mb) /dev/vg_name/lv_name
+--> lvdisplay
+--> mount -a 
+
+ vgextend
+-->adding new physical disk to volume group
+--> create new partition using fdisk --> n --> cylender size-> t (type)--> w--> kpartx (part name)
+--> pvcreate physiacl_disk name (/dev/sdd)
+--> vgextend vg_name pv_name
+--> vg_dispaly
+
+How to move or migrate logical volume data
+--> umount vg_name
+--> pvcreate new_pv
+--> vgextend vg_name new_pv
+--> pvmove old_pve new_pve\
+--> mount -a
+--> pv display
+
+lvremove
+
+--->To delete or remove volume group
+--> first check lvm should not be mounted
+--> then delete
+--> lvremove /vg_name/lv_name
+
+vgremove
+
+--->To delete or remove volume group
+--> first check lvm should not be mounted
+--> umount mount pon
+--> then delete
+--> vgremove /vg_name
+
+pvremove
+
+--> only thing we should check that the physical volume is not part of any volume group
+--> we can remove or delete physical volume which is oly free
+--> pvremoev
+
+Check the volume group backup list by # 
+vgcfgrestore --list <volume group name>command.
+
+vgrename
+--> vgrename <existing volume group name><new volume group name> (to rename the volume group
+
+
+vgchange -l <no.><volume group> (to limit max. no. of logical volumes to the specified number)
+Example : # vgchange -l 2 <vgname> (to limit max. 2 logical volumes cab be created in this volum
+
+# lvrename 
+lvrename <existing lvname><new lvname> (to rename the logical volume
+vchange -pr <logical volume> (to put the logical volume into read only mode)
+# lvs (to see the logical volume permissions)
+# lvchange -prw <logical volume> (to put the logical volume into read and write mode) 
+
+# vgchange -an <volume group> (to disable the volume group)
+# lvchange -an <logical volume> (to disable the logical volume
+
+# vgcfgbackup (to take a backup of all volume groups)
+# vgcfgbackup <volume group> (to take a backup of the specified volume group)
+
+What are the locations of the logical volume and volume groups?
+# cd /etc/lvm/backup (the logical volumes backup location)
+# cd /etc/lvm/archive (the volume groups backup location)
+

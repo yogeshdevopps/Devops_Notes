@@ -1,0 +1,88 @@
+ 1081  awk '/uname/ {print}' add_ssh_key.sh
+ 1082  awk '/yogeshko/ {print}' add_ssh_key.sh
+ 1083  awk '/yogeshko/ {print $0}' add_ssh_key.sh
+ 1084  awk '{print $0}' add_ssh_key.sh
+ 1085  awk '{print $1}' add_ssh_key.sh
+ 1086  awk '{print $1 ,$4}' add_ssh_key.sh
+ 1087  awk '{print $1..$4}' add_ssh_key.sh
+ 1088  awk '{print $1.$4}' add_ssh_key.sh
+ 1089  awk '{print $1,$4}' add_ssh_key.sh
+ 1090  awk '{print $1.$4}' add_ssh_key.sh
+ 1091  awk '{print $1,$NF}' add_ssh_key.sh
+ 1092  awk '{print}' add_ssh_key.sh
+ 1095  mkdir awk
+ 1096  cd awk
+ 1098  awk '/manager/ {print}' test.txt
+ 1100  awk '/manager/ {print}' tset.txt
+ 1101  awk '{print}' tset.txt
+ 1102  awk '{print $1,$4}' tset.txt
+ 1103  awk '{print NR,$4}' tset.txt
+ 1104  awk '{print NR,$0}' tset.txt
+ 1105  awk '{print ,$1,$NF}' tset.txt
+ 1106  awk '{print $1,$NF}' tset.txt
+ 1107  awk '{print$NF}' tset.txt
+ 1108  awk '{print NR $NF}' tset.txt
+ 1109  awk '{print NR,$NF}' tset.txt
+ 1110  awk '{print NR,-,$NF}' tset.txt
+ 1111  awk '{print NR,,$NF}' tset.txt
+ 1112  awk '{print NR,$NF}' tset.txt
+ 1113  awk '{print ,$NF}' tset.txt
+ 1114  awk '{print $NF}' tset.txt
+ 1115  awk '{print NR,$NF}' tset.txt
+ 1116  awk '{print NR,$FS}' tset.txt
+ 1117  awk '{print NR,$RS}' tset.txt
+ 1118  awk '{print $RS}' tset.txt
+ 1119  awk '{print $ORS}' tset.txt
+ 1120  awk 'NR==0, NR==5 {print $RS}' tset.txt
+ 1121  awk 'NR==0, NR==5 {print $0}' tset.txt
+ 1122  awk 'NR==2, NR==5 {print $0}' tset.txt
+ 1123  awk 'NR==2, NR==5 {print NR,$0}' tset.txt
+ 1124  awk 'NR==2, NR==5 {print NR,'-',$0}' tset.txt
+ 1125  awk 'NR==2, NR==5 {print NR,"-",$0}' tset.txt
+ 1126  awk 'NR==2, NR==5 {print NR,"-",$1}' tset.txt
+ 1127  awk 'NR==2, NR==5 {print NR,"-:",$1}' tset.txt
+ 1128  awk 'NR==2, NR==5 {print NR,"-:",$2}' tset.txt
+ 1129  awk 'NR==2, NR==5 {print NR,"-:","post is",$2}' tset.txt
+ 1130  awk 'NR==2, NR==5 {print $1,"-:","post is",$2}' tset.txt
+ 1131  awk 'NR==2, NR==5 {print NF,"-:","post is",$2}' tset.txt
+ 1133  awk '{print NR,$NF}' tset.txt
+ 1134  awk 'NR==2, NR==5 {print NF,"-:","post is",$2}' tset.txt
+ 1135  awk 'NR==2, NR==5 {print NF,$2}' tset.txt
+ 1136  awk 'NR==2, NR==5 {print NF}' tset.txt
+ 1137  awk 'NR==2, NR==5 {print $NF}' tset.txt
+ 1138  awk 'END {print NR}' tset.txt
+ 1139  awk '{print NR}' tset.txt
+ 1140  awk 'length($0) > 10' tset.txt
+ 1141  awk 'length($0) > 1' tset.txt
+ 1142  awk 'length($0) < 1' tset.txt
+ 1143  awk 'length($0) < 10' tset.txt
+ 1144  awk 'length($0) < 11' tset.txt
+ 1145  awk 'length($0) > 50' tset.txt
+ 1146  awk 'length($0) > 32' tset.txt
+ 1147  awk 'length($0) > 22' tset.txt
+ 1148  awk 'length($0) < 22' tset.txt
+ 1149  awk '{print NR}' tset.txt
+ 1150  awk '{print NR,$1}' tset.txt
+ 1151  awk '{print NR,$0}' tset.txt
+ 1152  awk '{print NR,$NF}' tset.txt
+ 1153  awk '{print NR,NF}' tset.txt
+ 1155  awk '{print $1,"is selected for ",$2,"post"}'
+ 1156  awk '{print $1,"is selected for ",$2,"post"}' tset.txt
+ 1158  awk 'length($1) > 5' tset.txt
+ 1159  awk 'length($1) > 5 {print $1}' tset.txt
+ 1160  awk 'NR' tset.txt
+ 1161  awk '$NR' tset.txt
+ 1163  awk 'BEGIN print{NR}' tset.txt
+ 1164  awk 'BEGIN {print NR}' tset.txt
+ 1165  awk 'end {print NR}' tset.txt
+ 1166  awk 'END {print NR}' tset.txt
+ 1167  awk 'END {print NR,"square of ",NR*NR}' tset.txt
+ 1168  awk '{print NR,"square of ",NR*NR}' tset.txt
+ 1169  awk 'BEGIN {for(i=1;i<=7);i++} print "qube of",i,"is","i*i*i"
+ 1170  awk 'BEGIN {for(i=1;i<=7);i++} print "qube of",i,"is","i*i*i";
+ 1171  awk 'BEGIN {for(i=1;i<=7);i++} print "qube of",i,"is","i*i*i"'
+ 1172  awk 'BEGIN {for(i=1;i<=7;i++) print "qube of",i,"is","i*i*i"'
+ 1173  awk 'BEGIN { for(i=1;i<=7;i++) print "qube of",i,"is",i*i*i }'
+ 1174  awk '{print NR,"square of ",NR*NR}' tset.txt
+ 1176  history | grep awk
+ 1177  history | grep awk >> awk_commands

@@ -1,0 +1,17 @@
+If jenkins url is not opening on any port even after whitelisting th port
+---> restart docker serevice--> if jenkins is running as container 
+---> other wise restart jenkins service
+---> check port is listenin or not
+
+/var/jenkins_home/secrets/initialAdminPassword
+
+
+System is booting up. Unprivileged users are not permitted to log in yet. Please come back later. For technical details, see pam_nologin(8)."
+Connection closed by 172.18.0.3 port 22
+
+Resolv-LThis issue may come from /run/nologin. /run/nologin is created by systemd-tmpfiles-setup.service. It is then removed by systemd-user-sessions.service.
+
+So you have to delete this:
+
+$ ls -l /run/nologin
+# rm /run/nologin

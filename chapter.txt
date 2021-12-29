@@ -1,0 +1,17 @@
+Chapter#5 –Managing SELinux
+Chapter#6 – Booting Procedure and Kernel Parameters
+Chapter#7 – Job Automation
+Chapter#15 – NFS(Network File System)
+
+
+What is top command and what it shows?
+24. What is bonding and how to configure bonding? (from RHEL - 6
+
+
+rpm -qa --qf '%{name} %{version}-%{release} %{installtime:date}\n'
+cat /var/log/apt/history.log | grep 'apt-get install '
+yumdb info packagename
+grep 'apt-get install ' /var/log/apt/history.log
+
+top -b1 -n1 | grep Z
+

@@ -1,0 +1,10 @@
+#!/bin/bash
+
+mysqldump -u root -h db -p --password=1234 test > /tmp/db_"`date +"%d-%m-%Y_%H%M%S"`".db
+
+find /tmp/ -mmin +10 -iname '*.db' -exec mv '{}' /tmp/backup \;
+
+export AWS_ACCESS_KEY_ID=AKIATA2SHOSZ6N6IE6UA
+export AWS_SECRET_ACCESS_KEY=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
+
+aws s3 cp /tmp/db* s3://jenkins-backup-yogesh/db-"`date +"%d-%m-%Y_%H%M%S"`".sql

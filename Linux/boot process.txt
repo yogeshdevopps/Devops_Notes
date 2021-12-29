@@ -1,0 +1,65 @@
+BIOS
+--> stands for basic input / outpu system
+--> IT loads and executes the MBR boot loader
+--> when we turn of our system , The BIOS first perforn some integrity check of the HDD and SDD
+--> then the BIOS loads and execute the boot loaded programm which can be found in master boot record
+--> Once boot loader programm detcted then its load into memory and handover to the system
+--> The MBR is some time in USB sticks or CD ROM
+ 
+MBR
+--> MBR is responsible for loading and executing GRUB boot loader
+--> MBR is located in first sector of bootable device(/dev/hda , /dev/sda)
+--> MBR also have information of GRUB
+--> First 512 byes of bootable drive
+--> 446 bytes(boot loader) + 64 byts(Partition Table) + 2 magic number (which is used for error detection)
+--> Finaly  MBR is responsiblr for descover the bootable device and load grub boot loader into menory and transfer the control over it.
+
+
+GRUB
+--> GNU GRand Unified Bootloader
+--> typical boot loader for modern linux systems
+--> The GRUB2 configuration file is located at /boot/grub2/grub.cfg
+--> GRUB2 main configuration setting taken from /etc/default/grub
+--> GRUB seraches the compressed kernal image file alos called as vmlinuz in the boot directory
+--> GRUB loads the vmlinuz kernal image file into the memory 
+--> and extract the content of the initramfs image file into the temporary , memory based file system (tmpfs)
+--> The initial Ramdisk initrd is initial root file system that is mounted before the real root file sysetm.
+
+initramfs (initial ram file system)
+--->Job of this fs is to preload the block drive modules ,such as IDE ,scsi or raid so that root file system on which those module
+    normally reside , can then be accessed and mounted
+---> initramfs contain kernal module for all hardware that is require to boot as well as
+     the initial script required to process the next stage of booting.
+---> The initramfs is bound to the kernel and kernel mounts this initramfs as part of two stage boot process
+---> The dracut utility created intramfs whenerver a new kernal is installed.
+---> Use initrd command to view the content of the image created by dracut.
+
+Kernal(loading the kernal)
+---> the kernal start systemd/initd process with PID 1.
+---> it also load the necessary driver modules from initrd image.
+---> The boot loader may present the boot menu to the user or can be configured to automatically start a default operating system
+---> To load linux, kernal is load together with initramfs . initramfs contain kernal module for all hardware that is require to boot as well as
+     the initial script required to process the next stage of booting.
+--->On RHEL 7, the initramfs contains a complete operational system (which may be used for troubleshooting purposes).
+
+Starting SystemD
+---> systemd is the first process that starts after the system boots, and is the final process that is running when the system shuts down.
+---> it controls the final stages of booting and prepares the system for use. It also speeds up booting by loading services concurrently.
+---> systemd reads the file linked by /etc/systemd/system/default.target (for example, /usr/lib/systemd/system/multi-user.target) to determine the default system target (equivalent to run level). The system target file defines the services that systemd starts.
+
+Comparision of SysV Run Levels and Target Units
+Run Level     Target Units       Description  
+  0          runlevel0.target,   poweroff.target
+Shut down and power off
+1
+runlevel1.target, rescue.target
+Set up a rescue shell
+2,3,4
+runlevel[234].target, multi- user.target
+Set up a nongraphical multi-user shell
+5
+runlevel5.target, graphical.target
+Set up a graphical multi-user shell
+6
+runlevel6.target, reboot.target
+Shut down and reboot the system
