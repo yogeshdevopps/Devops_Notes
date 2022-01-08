@@ -1,0 +1,91 @@
+
+
+****************playbook Creation: It is used to push the configuration over group of server or single host by using inventory file(eg hosts)***************************
+vi /home/jenkins-data/jenkins_home/ansible/play1.yml --play1.ymlCrearted in this path so that it will get reflect inside container or we can create in jenkins-ansible and copy later on
+- hosts: test2
+  tasks:
+    - shell: echo Hello World > /tmp/ansible-file
+:wq!
+
+
+[root@dk1 ansible]# docker exec -ti -u root jenkins1 /bin/bash  --go inside container 
+root@dce0760236c1:/var/jenkins_home/ansible# ansible-playbook -i /var/jenkins_home/ansible/hosts play.yml   --code will get execute on remote_host machine and file will be created for the same by using hosts file info
+
+Error1:not given space after hosts:
+Error2: "s" not added in task"s"
+
+************Integration of  Ansible-playbook with jenkins : It is used to run ymal file by creating project in ansible**************************************************
+
+1.Need to select ansible plugin in available plugins in jenkins and install without restart.
+2.check in installed tab of plugin manger for confirmation
+3.build fresh project in jenkins
+   >Build>Invoke Ansible Playbook>
+   Playbook Path ---/var/jenkins_home/ansible/play1.yml
+   >Inventory>file or host list ---/var/jenkins_home/ansible/hosts
+
+Error1:Permission issue--owner of ansible folder inside jenkins home was root so need to change owner $chown jenkins:jenkins /var/jenkins_home -R  and usermod -a -G sudo jenkins
+Error2:File permission of secret ssh file mut be 600 always.
+Error3:Host key verification failed & known_hosts file issue -----/var/jenkins_home/.ssh/known_hosts so known hosts file deleted and issue resolved
+
+*****************************************************Passing jenkins parameter as Varibale in playbook******************************************************************
+1.Need to write below yaml file to pass pass parameter.
+  - hosts: test2
+    tasks:
+      - debug:
+           msg: "{{ MSG }}"
+2.Create project in jenkins and and define parameter and add path of yaml file and inventory.
+3.Add extra variable in Advanced option of build tab where we have already defined path of playbook and inventory
+4.we can run by passing varibale through command line by using below command 
+  $ansible-playbook -i hosts play2.yml --extra-vars "MSG=hello"
+  $ansible-playbook -i hosts play2.yml -e "MSG=hello"
+
+Error1:fatal: [test1]: FAILED! => {"msg": "The task includes an option with an undefined variable. The error was: 'MSG' is undefined\n\nThe error appears to be in '/var/jenkins_home/ansible/param.yml': line 3, column 7, but may\nbe elsewhere in the file depending on the exact syntax problem.\n\nThe offending line appears to be:\n\n  tasks:\n    - debug:\n      ^ here\n"}
+       ---when we not pass any parameter
+Error2:need to check syntax of code in playbook
+
+
+************************************Jenkins + Ansible + MySql + PHP + NGINX + Shell Scripting************************************************************************
+
+1. Create databases in container of mysql server
+   $mysql -u root -p 
+   ---1234
+   mysql>show databases;
+        >create databases people;
+        >use people;
+        >create table register (id init(3), name varchar(50), lastname varchar(50), age init(3));
+        >show tables; 
+        >desc register; 
+2.Create text which will have name and lastname (eg. Dnyandeo,Kolte) in /home/jenkins-data/jenkins-ansible/filename.txt
+3.Create script which will get the data from text file in the silmilar format required for mysql database "people" and table "register" (id name lastname age)        
+  [root@dk1 jenkins-ansible]#vi put.sh
+                             #!/bin/bash
+
+                             counter=0
+                             while [ $counter -lt 5 ]; do
+                             let counter=counter+1
+                             name=$(nl people.txt | grep -w $counter | awk '{print $2}' | awk -F ',' '{print $1}')
+                             lastname=$(nl people.txt | grep -w $counter | awk '{print $2}' | awk -F ',' '{print $2}')           --- awk -F is used for delimiting & nl is used for numbering line
+                             age=$(shuf -i 20-30 -n 1)                                                                           -----shuf command is used to give random number from given range
+                             mysql -u root -p1234 people -e "insert into register values ($counter, '$name', '$lastname', $age)"
+                             echo "$counter, $name, $lastname, $age was correctly imported"
+                             done
+4.give executable permission to script & shift script and text file inside container of mysql server (db) and run then chek in mysql server date get reflected or not
+  #chmod +x put.sh
+  #docker cp put.sh db:/tmp        --copy file in mysql server container
+  #docker cp people.txt db:/tmp    --copy text file as well then only command will get run as this is ref file in script
+  #docker exec -ti db /bin/bash    --go inside db container  
+  #cd /tmp
+  #./put.sh
+  check in mysql data is imported or not by using below command
+  # mysql -u root -p
+   1234
+  >use people;   ---databases name
+  >show tables;  ---to check all tables inside datbases
+  >select * from register;   ---to see table info
+
+5.Docker Image for nginx + web Server + php
+
+  
+
+
+ 
