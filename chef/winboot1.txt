@@ -1,0 +1,1 @@
+knife wsman test -m 192.168.0.107

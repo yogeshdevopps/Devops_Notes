@@ -1,0 +1,33 @@
+chef generate repo chef-repo
+cd chef-repo
+mkdir .chef'  --> The .chef directory is used to store three files(
+                          a.config.rb
+                          b.ORGANIZATION-validator.pem
+                          c.USER.pem
+copy below two files for chef server and paste it into .chef directory
+   ORGANIZATION-validator.pem
+    USER.pem
+create configre.rb file in .chef directory
+     eg.
+      current_dir = File.dirname(__FILE__)
+     log_level                :info
+     log_location             STDOUT
+     node_name                "vicky_chef"
+    client_key               "#{current_dir}/vicky_chef.pem"
+    chef_server_url          "https://chef/organizations/vk"
+    cookbook_path            ["#{current_dir}/../cookbooks"]
+   
+   Or
+  You can use knife confgure command and provide details after that it will automatcally create knife.rb in ~/.chef/credentilas
+
+Get ssl certificate
+    --> knife ssl fecth
+    --> knife ssl check
+  before than resolve hostnames	
+
+
+
+
+
+
+

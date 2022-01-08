@@ -1,0 +1,16 @@
+1.ftp img
+2.mount it
+3.create directory (repository)
+4.copy all mounted data into created repository
+5.craete new file in /etc/yum.repos.d (ex-> local.repo)
+6.copy below lines into it
+            [centos7]
+            name=centos7
+            baseurl=file:///localrepo/
+            enabled=1
+            gpgcheck=0
+
+7.createrepo /localrepo/
+
+8.yum clean all
+9.yum repolist all

@@ -1,0 +1,7 @@
+checking for SSL headers... configure: error: Cannot find ssl headers
+
+--> 
+
+Use the following command to fix it:
+
+yum install openssl-devel

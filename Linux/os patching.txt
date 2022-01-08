@@ -1,0 +1,31 @@
+ Managing patches in Linux involves scanning your Linux endpoints to detect missing patches, downloading patches from vendors' sites, and deploying them to the respective client machines.
+There are two ways of managing your Linux systems using our software patching tool:
+(i) You can either deploy the patches manually or
+(ii) You can choose to automate it via a patch management software
+
+
+yum-cron package provides a convenient way to check for, download and apply updates automatically
+
+Take DT from owner
+Raise CR as per scheule
+collect server preconfiguration details
+  a.server uptime , hostname details
+  b. clooect grub info /etc/grub/grub.conf
+  c.collect all mount point info
+  d.collect all disk lvm info
+  e.check the backup / snapshot detalis in vm
+  f.collect teh route details
+  g. check whether server is running or cluster or not
+    identify service group in which place and its location
+    find out the machine
+    shift that service to other node
+    freeze this machine
+  h.check with app/DB team does it require to exclude any package( yum update --exclude=PACKAGENAME.)
+submit the CR--> for approval
+Apply patch
+  Yum clean all
+  yum check update
+  yum update
+  reboot
+
+Verify all details

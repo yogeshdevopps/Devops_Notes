@@ -1,0 +1,18 @@
+wget https://packages.chef.io/files/stable/chef-server/13.1.13/el/7/chef-server-core-13.1.13-1.el7.x86_64.rpm
+rpm -ivh chef-server-core-13.1.13-1.el7.x86_64.rpm
+chef-server-ctl reconfigure
+chef-server-ctl status
+chef-server-ctl user-create vicky_chef vicky kolekar yogesh13l.yk@gmail.com 'Yogesh@13' --filename /etc/chef/vicky_chef.pem
+chef-server-ctl org-create vk 'vickykolekar' --association_user vicky_chef --filename /etc/chef/vk-validator.pem
+wget https://packages.chef.io/files/stable/chef-manage/2.5.16/el/7/chef-manage-2.5.16-1.el7.x86_64.rpm
+rpm -ivh chef-manage-2.5.16-1.el7.x86_64.rpm
+chef-manage-ctl reconfigure --accept-licens
+iptables -I INPUT -p tcp --dport 80 -j ACCEPT  / firewall-cmd --zone=public --add-port=80/tcp --permanent
+iptables -I INPUT -p tcp --dport 443 -j ACCEPT
+chef-server-ctl install chef-manage
+Note You have to use same hostname in chef server 
+check your host key in /var/opt/opscode/nginx/ca directory
+
+
+
+

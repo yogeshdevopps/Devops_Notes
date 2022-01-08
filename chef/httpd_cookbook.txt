@@ -1,0 +1,12 @@
+package 'httpd' do
+    action :install
+end
+
+service 'httpd' do
+     action :start
+end
+
+file '/var/www/html/index.html' do
+     action :create
+     content "<html><body><h1>welcome to chef</h1></body></html>"
+end

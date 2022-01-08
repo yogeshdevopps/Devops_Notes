@@ -1,0 +1,30 @@
+ERROR: WinRM::WinRMAuthorizationError: WinRM::WinRMAuthorizationError
+
+Solution-: setup winrm again
+->   C:\> winrm quickconfig 
+press Yes
+-> winrm set winrm/config '@{MaxTimeoutms="1800000"}'
+-> netsh advfirewall firewall set rule name="Windows Remote Management (HTTP-In)" profile=public protocol=tcp localport=5985 remoteip=localsubnet new remoteip=any
+OR
+-> winrm quickconfig 
+->   winrm quickconfig -transport:https
+->   winrm enumerate winrm/config/listener
+->  Winrm quickconfig  --> creates a firewall exception only for the current user profile
+
+Run on both system
+ That time you will get below errors
+
+WinRM firewall exception will not work since one of the network connection types on this machine is set to Public. Change the network connection type to either Domain or Private and try again.
+-> change your network type public to private
+     -->Go to Control Panel –> Network and Internet –> View Network status and tasks
+       You will see the network type under each connected network
+
+https://docs.chef.io/workstation/knife_windows/
+
+
+https://support.microsoft.com/en-in/help/875424/time-synchronization-may-not-succeed-when-you-try-to-synchronize-with
+
+* Time zone error
+--> goto command prompt and exectue below command
+       ----> Get-TimeZone 
+and match with workstation node 

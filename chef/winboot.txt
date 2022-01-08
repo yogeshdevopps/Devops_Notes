@@ -1,0 +1,13 @@
+knife wsman test -m 192.168.0.107
+
+knife bootstrap -o winrm ip -U 'user' -P 'Password' -N 'node name'
+ run from workstation
+ 
+knife winrm 'name:nodename' 'chef-client' -x username -p password
+
+$ nc -z -w1 <IP or host name> 5985;echo $?
+
+netsh int ipv4 show Dynamicport tcp==> display total connections
+
+netsh int ipv4 show Dynamicport tcp start=10000 num=1000 set tcp connections
+

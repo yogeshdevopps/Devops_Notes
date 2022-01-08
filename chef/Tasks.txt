@@ -1,0 +1,10 @@
+1. set banner
+2. create repository
+3. install basic utilities
+4. install php
+5. install install mysql
+6. reconfigure db
+7. open required ports in firewall and reload firewall
+8. establish open connectivity between two nodes
+9. set data sync using rsync
+10. create users and set rules for them

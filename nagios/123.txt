@@ -1,0 +1,7 @@
+select 
+
+area , name 
+
+select area,name from area inner join employee on area.salesrep=employee.emp_id;
+
+select a.name as sales_person , b.name as manager_name from employee a inner join employee b on a.emp_id=b.mgr_id;
