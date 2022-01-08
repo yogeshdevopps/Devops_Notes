@@ -1,1 +1,0 @@
-mount CentOS-7-x86_64-DVD-1908.iso -o loop /mnt

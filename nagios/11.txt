@@ -1,3 +1,0 @@
-# semanage fcontext -a -t httpd_sys_rw_content_t 'log'
- restorecon -v 'log'
- setsebool -P httpd_unified 1
