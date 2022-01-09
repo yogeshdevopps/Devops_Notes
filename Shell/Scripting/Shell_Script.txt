@@ -1,0 +1,48 @@
+Kernal
+------------
+->Interfaces between hardware and softeware
+->is programm which is stored in operating system its like programm a commadnthat keeps on running
+->Takes command from shell
+->When we rae in shell, we exectute comands and commands are being forearded to kernal and the kernal resposibility to talk with hardware thats inside your computer
+->shell and kernal build together in one package called operating system
+
+Shell
+-----
+--> interface between user and kernal
+--> 
+echo $0
+
+simply type shell name e.g 
+root@yogesh15:/home/yogeshko/jenkins-data/jenkins-ansible/web/conf# sh
+# echo $0
+sh
+#
+
+shell script fromat 
+-------------
+need to define shell (#!/bin/bash) at the start of script so that os will come to know in which shell code need to be executed.
+
+comment in script is given after # symbol.which 
+
+
+comment should tell what your script does when your script was written 
+
+-----------------------------------
+Commands :
+#echo /etc/shells                    ---to get the availble shells in system
+#echo $0                             ---to get current shells
+#sh                                  ---write shell name to change shell
+#exec &>> path of file               ---use in script to move output of all executed command in script to file in mentioned path
+#date +"%d-%m-%y-%H:%M:%S            ---to get the date but while using as variable in script use format ---  K="`date +"%d-%m-%y-%H:%M:%S"`"
+#read choice                         ---read is used to get the input from user and choice is define as varibale to that given input
+#case $choice in                     ---case is use in given syntax so that it can run the command for the given choice by user.
+ a)uptime;;
+ *)echo " no input given"            --- *) it is used when no input given by user
+ esac
+#echo $?                             ---It is used to confirm last command executed or not if executed then it will give 0 else 1 for non executed
+#for i in 1 2 3                      ---for loop example
+do
+echo "your number is $i"
+sleep 2                              ---it will hold for 2 sec
+done
+#
