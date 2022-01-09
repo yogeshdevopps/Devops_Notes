@@ -1,0 +1,28 @@
+Kernal
+------------
+->Interfaces between hardware and softeware
+->is programm which is stored in operating system its like programm a commadnthat keeps on running
+->Takes command from shell
+->When we rae in shell, we exectute comands and commands are being forearded to kernal and the kernal resposibility to talk with hardware thats inside your computer
+->shell and kernal build together in one package called operating system
+
+Shell
+-----
+--> interface between user and kernal
+--> 
+echo $0
+
+simply type shell name e.g 
+root@yogesh15:/home/yogeshko/jenkins-data/jenkins-ansible/web/conf# sh
+# echo $0
+sh
+#
+
+shell script fromat 
+-------------
+need to define shell (#!/bin/bash) at the start of script so that os will come to know in which shell code need to be executed.
+
+comment in script is given after # symbol.which 
+
+
+comment should tell what your script does when your script was written 
