@@ -1,0 +1,139 @@
+********************************************1.Introduction to git******************************************************************** 
+
+1.Git is an SCM-source code management tool 
+2.There are two types of code management systems.
+                               |
+           |-------------------------------------------------------------|
+         CVCS (SVL)                                                     DVCS
+ 
+ 1.Centralised version control system                   1.Distributed version control system
+ 2.CVCS tool used earlier before DVCS                   2."git" tool used for DVCS also "mercural" is there. 
+ 3.Code save from local to remote server orcentral repo 3.Code save on central repo of remote server or can be pull                                                              
+ Drawback:                                                on local machine                                            
+ 4.If central repo got corrupt or failed data loss      4.No need to connect to internet once code pull at local machine
+ 5.Remote server got failed then also data loss         5.If central repo or server got failed then we will have data at local  
+ 6.Internet required to access central repo               machine of eache user as users pull code on daily basis to work.No data loss
+ 7.Speed slow as we are accessing through internet      6.It is fast and reloable.
+ 8.Always need to connect to netwrok to perform any     7. For Every change in code commit id given to it so it is easy to track.
+   action
+ 9.Developer always face conflict while code merge      8.Conflict chances are less while merging code as compared to CVCS
+ 10.CVCS do not provie offline access.                  9.working fine in offline mode as client copies the entire repo at local machine
+
+3.Git invented by linux torvald at 2005 1st version introduce.Earlier linux using bit-keeper control version system.
+4.Git work at local repo and workspace.It is used on local machine to manage code. 
+5.GitHub is a service which provide centralize storage.It work as remote server or central repo.
+6.If developer want to share code with others team member then code need to be push on central server(github) in DVCS.
+7.In DVCS every user has a local copy and clone of central repository.local repo has all the files and metadata present in main repo.
+
+
+******************************************2.Git 3 stages of working*******************************************************************
+
+1.Need to install git on Local machine 
+2.Create directory to use git in that directory only
+3.Need to run command inside created directory.
+   $git init         ---it is used to initialize git  in that directory
+4.post execution of above command hidden folder ./git is created inside that directory and directory will get converted
+  into git repository or local repositroy.
+5.Git has 3 stages.
+
+  I) Workspace/Working directory: Code is written,edited in this directory.It is work area.
+  II)Staging Area: once code wriiten then it is add in staging area where we can not do any changes in code.The code which we want to 
+                   commit added in staging area.It is not mandatory to commit all the codes present in staging area.
+                   It work as an intermediate stage between workspce and commit.
+                          $
+                             
+  III)Local repository: It is finalizing the code or save the code.
+                        when we commit the code uniq commit id is given to that code so it is easy to track.we can also give tag 
+                        while commiting which is description or extra information about the commit.
+
+6.Once code commited it means it is finalized and now it is ready to push on central repo (GITHUB) to  share with other user.
+
+7.GitHub is takeover by microsoft and it chargable for private repo.so developer designed gitlab which is free version.
+
+8.We need to create an account on GITHUB then only we can push the data from local repo.once data push then it can be accessed by
+  other user also.other user working on same project can pull the data into their local machine and add the code into it.Once added 
+  then user has to commit the changes into their local machine and then it is pushed on github due to this it useful avoid conflict
+  of work.Also details of user for commited code is also there so it is easy to track changes done by any one. 
+
+9.If we want to do version control maually then we have take backup of code every day that will increases storage becauses everday we 
+  take backup of old as well as new added code this is not the case with git.In git incremental snapshot is taken due to which it will
+  copy only newly added code as old code is already their.
+10.Important terms in git:
+   I)commit: It store changes in local repository.one commit-id is assigned to that change.
+             commit id  is 40 alpha-numeric character and uses SHA-1 checksum concept.
+             event if one dot is added then also different commit id will be changed.
+             commit id is used to tracke changes in code and help to identify who changed the file.
+
+   II)Tags: Tag is added with commit as a comment or meaningful description about that commit.
+
+   III)snapshots:when we commit the code snapshot is created and once we do any changes in that and commit once again
+                 then it will append changes in new snapshot.It is always incremental snapshot used in git.
+   IV)Push: push opearion copies changes from local repo to remote or central repo
+   V)Pull: pull operation copies the changes from remote to a local repo.It is used for synchronization between two repo.
+   VI)Branch:code save in default "Master branch" but if we want work parallel on any project the we create branch from master.
+             by using branch work can be done parrallley and after completion required branch can be merged with master.
+             Each task has separate branch and finally merge all branches.Default branch is master.
+11.Advantages of Git.
+   I)  Free and open source
+   II) Fast and small as most of operation are performed locally.
+   III)Secure as it uses cryptography hash function SHA1 checksum method to name and identify objects within database.
+   IV)No need of poweful hardware.
+   V)branching is easy.
+
+*******************************************************3.Practical*******************************************************************
+
+#git installation on local machine:
+
+  ->yum install git -y                                        --- by default git pkg is present in linux so install with yum
+  ->which git                                                 --- wheere git installed
+  ->git --version                                             --- Version:2.23.3
+  ->git config --global user.name "DK"                        --- It is configure so tha commit can be identified
+  ->git config --global user.email "kk@gmail.com "
+  ->git config --list                                         ---to get the global user name and email details
+
+
+#git hub account creation:
+
+ ->https://github.com/
+ ->username:dnyand
+ -Create repo and copy URL
+
+#git general commands
+
+   Need to create directory as local machine.
+
+ ->git init                                                   ---To initialize or convert directory into git repository
+ ->touch file                                                 ---file created to write a code
+ ->git status                                                 ---"untracked" file in "RED" colour will indicate data is in work space
+ ->git add .                                                  ---To add code from working space to staging area
+ ->git status                                                 ---data or file is shown in "GREEN" colour which indicated data is 
+                                                                 track and also added in staging area
+ ->git commit -m "1st commit"                                 ---to move from staging to commit
+ ->git status                                                 ---once commited then it will not show anyting in working space
+ ->git log                                                    ---It will give info of user who commited code,commit ID,Date & Time,tag
+ ->git show commit_id                                         ---To see what code commited for that commit id
+ ->git remote add origin https://github.com/dnyand/study.git  ---To add data on central repo or on github repo "origin" name given 
+ ->git push -u origin master                                  ---To push code into master branch of remote or central repo it will ask
+                                                                 username and password for github
+ ->If file is modified then we have to follow again same procedure.add in staging then commit.
+
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,253 @@
+********************************************1-DATABASE*******************************************************************************
+
+#DBMS stand for databases mangement system.
+#Databases is collection of data stored in organize manner with the help of DBMS (eg oracle,mysql,monogoDB,postgreSQL) so that we can 
+ access or use that data easily from remote location.
+#two types of database are there
+ 1.Relational Database (RDBMS):  Data stored in table format and each table is connected or link to each other due to which it is 
+                                 called RDBMS. Data in RDBMS is acceess with the help language called SQL-structure querry language. 
+                                 RDBMS eg.Oracle,MySql,MS SQL Server, Postgre SQL
+ 2.NonSQL Databases (NDBMS)    : Data is not stored in table format and it is stored in document.
+                                 eg.MongoDB, Redis, Cassandra
+ 
+
+#Advantages of Mysql: 1.Cross platform 2.used with multiple languages(php, nodejs, python,C#) 3.open source 4.Mysql is RDBMS
+                      5.Fast, Reloable, scalable, easy to use 6.work on server, client or embedded system
+
+*********************************************2-Installation***************************************************************************
+
+1.Install XAMPP, WAMP, MAMP
+2.MySql workbench
+     OR
+1.MysqL community server (Need to install first then install Mysql workbench)
+2.Mysql Workbench
+
+
+***********************************************3-TABLE CREATION***********************************************************************
+
+#datatype
+ 
+  1.string-14 :char(0 to 255), varchar(0 to 65535), Binary(size), Varbinary(size), tinytext(255 fixed characters), text(65535 bytes), 
+           mediumtext(16,777,215 char), longtext(4, 294,967,295 char), tinyblob(255 bytes), blob(65535 bytes), mediumblob(16777215 bytes)
+           longblob(4,294,967,295 bytes), ENUM(val1, val2, val3)--max 65535 value,set(val1, val2, val3)--max 64 value
+  
+  2.Numeric-13 :bit(1 to 64), tinyint (-128 to 127), int(-2147483648 to 2147483647), integer(size), smallint(-32768 to 32767), 
+                mediumint(-8388608 to 8388607), bigint(size)--can be use to store phone number,bool(1/0),boolean(0/1), 
+                float(p), double(size, d)--255.268 ,decimal(size=60,d=30)
+  
+  3.Date & Time: Date ------- 'yyyy-mm-dd' range:(1000-01-01 to 9999-12-31)
+                 DATETIME(fsp)----- yyyy-mm-dd hh:mm:ss
+                 TIMESTAMP(fsp)---- similar for old time
+                 TIME(fsp)---- hh:mm:ss
+                 YEAR -----max four digit
+
+#syntax: 
+       ->create database databases_name;                                                   ----Database creation by giving name
+       ->use database_name;                                                                ----use specific databases     
+       ->create table table_name(column1 datatype, column2 datatype, column3 datatype);    ----table creation inside database
+       ->insert into table_name(column1, column2, column3) values(value1, value2, value3); ----insert data into table
+       ->show * from database_name.Table_name;                                             ----to see the table data 
+     eg: 
+       ->create database test;
+       ->use test;
+       ->create table studentinfo (id int(100), name varchar(50), birth_date Date, gender varchar(1), phone varchar(13));
+       ->insert into studentinfo (id, name, birth_date, gender, phone) 
+       ->values (1, "DK", "1992-06-26", "M", "9702809850");                -----------use " " for varchar datatypes values
+       ->show * from test.studentinfo; 
+
+#To add multiple records in table
+       ->insert into table_name(column1, column2, column3) 
+         values (value1, value2, value3), (value1, value2, value3);
+    eg ->insert into studentinfo (id, name, birth_date, gender, phone)
+         values 
+         (2, "SK", "1995-09-12", "M", "9820470509"),
+         (3, "VK", "1965-06-01", "M", "7483920183");         
+
+************************************4.Constraints (Restrictions on column)************************************************************
+
+
+#Constraints is nothing but restrictions on columns of data table to avoid null value ,wrong value,missing data 
+ so that we will get correct data. 
+
+#Types :
+       1.Not null: It is used to avoid null value in that column.It is mandatory to insert data in that column or cell.
+                   eg. If is applied in id or gender column then data has to fill in that column at any cost.
+       2.unique  : To avoid duplicate value in column we use this type.
+                   eg. We can use to for phone number or student id column to avoid duplicate value.
+       3.Default : To set the default value so that it will automatically fill in that cell or columnn once given.
+                   eg. If we want to keep city name same 
+       4.Check   : It is used to put restriction by using some condition.
+                   eg. To limit the age column.   check(age>=18)
+       5.Foreign Key:
+       6.Primary Key:
+#syntax:
+       -> column_name datatype() constraint type
+       -> create table table_name(id int not null unique, name varchar(50) not null, age int not null check(age>=18),
+          gender varchar(10) not null, phone varchar(13) not null unique, city varchar(10) not null default'Mumbai');
+
+     eg->create table studentinfo1(id int not null unique, name varchar(50) not null, age int not null check(age>=18),
+         gender varchar(10) not null, phone varchar(13) not null unique, city varchar(10) not null default'Mumbai');
+       ->insert into studentinfo1(id, name, age, gender, phone, city)
+         values 
+         (1, "DK", 29, "M", "111111", "mum");    ---all the values are perfect so no error will be there
+                 or
+         (2, "VK", 56, "222222", "mum");  ---gender not added so it will give warning but data will get inserted in table and gender will show blank
+                 or 
+         (3, "KK", 45, "M", "333333"); ---city not added but it will get addedby default  as we set default city mum
+                 or
+         (4, "LL", 46, "F" "333333"); ---same phone number will give error as unique set so we have to change number then proceed
+                 or
+         (5, "LK", 15, "M" "555555"); ---we have limited age at equal or above 18 so it will give error so change and proceed.
+
+
+
+***************************************5.Select command (to see table info)***********************************************************
+
+#To see the data of table we use "select" command so it helps us to see the general data.
+
+#syntax:
+       ->select * from table_name;                               ---To get the all data of table by using *
+       ->select column1, column2 from table_name;                ---To get the data of mentioned particular columns from table
+       ->select column1 as required column_name from table_name; ---To get the data with required column name by using "as"  
+     eg.
+       ->select * from studentinfo1;
+       ->select id, name, phone from studentinfo1;
+       ->select id as Id, name as Student, phone as Phone from studentinfo1;
+                       or 
+       ->select id as Id, name as "Student name", phone as Phone from studentinfo1; -----double inverted comma use so that space 
+                                                                                         can be used between two names 
+
+#To see the conditional data we usw "Where" command with "select"
+
+#syntax:
+      ->select column1, column2 from table_name where condition;   ---To get the condition data by using where
+
+#Comparison Operator: equal "="
+                     greater than ">"
+                     less than "<"
+                     not equal "<>" or "!="
+                     Between ---certain range
+                     Like    ---search for pattern
+                     In      ---To specify multiple possible values for a column
+
+     eg:
+        ->select * from studentinfo1 where gender = "F";    ---To get the data of female only
+        ->select * from studentinfo1 where age < 20;        ---To get the data of student having age less than 20
+        ->select * from studentinfo1 where age <= 20;       ---To get the data of student having age less than or equal to 20
+        ->select * from studentinfo1 where city != "mum"    ---to get the data of student not belongs to city mumbai
+
+
+***************************************6.Select command with AND, OR, NOT operator***************************************************
+
+#To select data or get the data from table with multiple condition we use operator such as "AND,OR ,NOT with WHERE"
+ AND---It is executed when all the conditions mentioned between the AND operator is satisfied.
+ OR ---It is executed when any one condition mentioned betwenn the OR opearator is satisfied.
+ NOT---It gives the opposite ouput for mentioned conditon with NOT operator.
+
+#syntax:
+        For "AND" Operator
+
+       ->select * from table_name where condition1 and condition2 and condition3; --each condition has to be satisfied then only 
+                                                                                    it will show record otherwise not
+     eg:
+       ->select * from studentinfo1 where age >= 18 and age >= 21; ---it will give data having age between 18 to 21 
+       ->select * from studentinfo1 where age <= 20 and gender = "M";---it will give data having age less than equal 20 and gender M
+       ->select * from studentinfo1 where age <=20 and gender = "M" and city = "mum";  ---all 3 condition has to be satisfied
+       
+        For "OR" Operator
+
+       ->select * from table_name where condition1 or condition2 or condition3; --any one condition has to be satisfied to show record
+       
+     eg:
+       ->select * from studentinfo1 where age <= 20 or city = "mum";  --It will give data having age less than equal 20 irrespective 
+                                                                        of city (city can be delhi,hyd) and also give data having city
+                                                                        mum irrespective or age of studednt it can be more than 20
+      
+        For "NOT" Operator 
+       
+        ->select * from table_name where not condition1;   ---It will give opposite output of mentioned condition
+
+     eg:
+       ->select * from studentinfo1 where not age >=20;   ---It will give data having age less than 20
+
+  
+       Combination of "AND" and "or" operators
+
+       ->select * from table_name where (condition1 and condition2) or condition3; --Bracket need to be used while using both operator
+
+     eg:
+       ->select * from studentinfo 1 where (city = "mum" or city = "delhi") and gender = "M"; --It will process bracket first and
+                                                                                                then "and" to give ouput for Male only
+
+       Combination of "NOT" and "OR"
+ 
+      ->select * from table_name where not condition1 or condition2; ----not will be applicable for 1st condition not for second as
+                                                                         bracket is not their 
+      ->select * from table_name where not (condition1 or condition2); ---not will be applicable for both condition 
+
+    eg:
+      ->select * from studentinfo1 where not city = "mum" or city = "delhi"; ---it will not give data for mum city
+      ->select * from studentinfo1 where not (city = "mum" or city = "delhi"); ---it will not give data for mum as well as for delhi
+
+ 
+
+**************************************7.Select with IN,BETWEEN operator************************************************************** 
+
+IN OPERATOR :
+
+#IN operator use to check multiple value. we can pass multiple value by using single command with IN operator.
+
+#syntax:
+       ->select * from table_name where column_name in (value1,value2);        ---It will give data for the mentioned value
+       ->select * from table_name where column_name not in (value1, value2);   ---IN operator can be use with NOT operator
+     
+     eg:
+       ->select * from studentinfo1 where age in (18,21);           ---It will give data having age 18 and 21
+       ->select * from studentinfo1 where age not in (18,21);       ---It will give data for all age except 18 and 21
+       ->select * from studentinfo1 where city in ("mum", "delhi"); ---It will give data for delhi and mum city
+
+ 
+BETWEEN OPERATOR :
+
+#Between operator use to get data of specific range.
+
+#syntax:
+       ->select * from table_name where column_name between value1 and value2;  ---Range is given by using between operator
+       ->select * from table_name where column name not between value1 and value2; ---not operator use to drop the data of that range
+
+     eg:
+       ->select * from studentinfo1 where age between 18 and 20;        ---it will give the data between age 18 and 20
+       ->select * from studentinfo1 where age not between 18 and 20;    ---it will give the data which not belongs to range 18 and 20 
+       ->select * from studentinfo1 where name between "a" and "k";     ---It will give the data whose name start from 
+                                                                           alphabet range a to k only
+       ->select * from studentinfo1 where name between "anil" and "kolt"; ---even though complete name given it will only consider 
+                                                                              first alphbet only
+       
+       we can use this operator with date as well to get the data between range of two different dates.
+       ->select * from table_name where column_name between "YYYY-MM-DD" and "YYYY-MM-DD";
+      eg:
+       ->select * from test where birth_date between "1995-01-01" and "1995-06-26";
+  
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
