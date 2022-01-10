@@ -46,3 +46,12 @@ echo "your number is $i"
 sleep 2                              ---it will hold for 2 sec
 done
 #
+
+
+
+
+---------------Exit Status----------
+0---> ok
+1---> minor eroor
+2---> serious trouble
+3-255---> everything esle
