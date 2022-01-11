@@ -50,8 +50,101 @@ done
 
 
 
----------------Exit Status----------
+---------------Exit Status---------------
 0---> ok
 1---> minor eroor
 2---> serious trouble
 3-255---> everything esle
+
+
+------------find command----------------
+
+#find /home -iname ".txt" -atime -10 -type f                ---which .txt file access in last 10 days ago
+#find /home -mtime 3 -mtime -5 -daystart -iname "*.pdf"     ---used to find files edited between 3 to 5 days before & daystart will measure time from start of current day
+#find /home/test -newer /home/LKD                               ---It is used to compare files of different directory and gives newer one
+#find /home -iname ".txt" -mtime -90 -print                     ---txt files changed less than 90 days ago 
+#find /home -iname ".txt" -mtime +90                            ---txt files changed more than 90 days ago
+#find /home -iname ".txt" -mtime 90                             ---txt files changed exact 90 days
+#find /root/Test -iname "*.txt" -mtime -90 -exec ls -lrth {} \;  ---find command with exec command which will help to find and perform execution
+#find /root/Test -iname "*.txt" -mtime -90 -exec mv {} {}new \;   ---To find and rename file with this command
+
+
+-------------touch command-------------------------
+
+#touch -d "Thu Mar 15 2021 12:05:22" {c..d}                 ---to create file with required date and time.
+
+
+-------------cut command--------------------------
+  
+#cut -b 1 tset.txt                                 --- To extract specific bytes use -b
+#cut -b 1-3 tset.txt                               --- To extract 1-3 range of bytes using -b
+#cut -b 1-3,4-6,8 tset.txt                         --- To extract 1-3 ,4-6 and 8 byets using -b
+#cut -b 1- tset.txt                                --- To extract all bytes staring from 1 byte to end of the byte use -b 1-
+#cut -b -5 tset.txt                                --- To extart first 5 bytes use -b -5
+#cut -c 2,5,7 tset.txt                             --- To extract 2,5,7 characters
+#cut -c 1-7 tset.txt                               --- To extract 1-7 range characters
+#cut -c 1- tset.txt                                --- To extract 1 character to end of the character use -c 1-
+#cut -c -5 tset.txt                                --- To extart first 5 characters use -c -5
+#cut -f 1 tset.txt                                 --- To extract fields
+#cut -d " " -f 1 tset.txt                          --- -d is used for delimiter so it will consider the 1 field till mentioned space ,comma in " "
+#cut -d " " -f 2 tset.txt                          --- to extract 2 field by delimiting string in filed with space 
+#cut -d " " -f 3 tset.txt                          --- to extract 3 field 
+#cut -d " " -f 3,4 tset.txt                        --- To extract 3 and  field
+#cut --complement -d " " -f 1 tset.txt             ---compliment use for filter or exclude specific field (1st in this case)
+#cut --complement -d " " -f 2 tset.txt             ---compliment use for filter or exclude specific field (2nd in this case)
+#cut -d " " -f 1,2 tset.txt --output-delimiter='%' ---output-delimiter is used for add specific character "ajay%manager"
+#cat tset.txt | cut -d " " -f 1 | sort -r                --- it will sort 1st field of name with reverse.
+#cat tset.txt | cut -d " " -f 1 | sort -r >> tset1.txt   ---it will move the output in txt file
+#cat tset.txt | cut -d " " -f 1 | sort -r >> tset1.txt
+#cat tset.txt | cut -d " " -f 2 | sort -r >> tset1.txt
+#cat tset.txt | cut -d " " -f 3 | sort -r > tset1.txt
+
+-------------------
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
